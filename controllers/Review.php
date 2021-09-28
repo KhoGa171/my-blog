@@ -4,6 +4,19 @@ class Review extends Connect {
     public function __construct(){
         $this->reviewModel = $this->call_models("ReviewModel");
     }
+    public function index(){
+        if(isset($_POST['search'])){
+            $key = $_POST['txtSearch'];
+            $reviews = $this->reviewModel->TKReview($key);
+        } else {
+            $reviews =  $this->reviewModel->getReview();
+        }
+        $this->call_views('admin/index',[
+            'folder' => 'review',
+            'page' => 'index',
+            'reviews' => $reviews,
+        ]);
+    }
     public function addRate(){
         if(isset($_SESSION['userID'])){
             if(isset($_POST['review'])){

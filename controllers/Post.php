@@ -131,6 +131,7 @@ class Post extends Connect
                         echo '<script>alert("Cập nhật không thành công!"); window.location="' . URL . 'Post/viewAddPost";</script>';
                     }
                 } else {
+                    unlink('./public/uploads/' . $pt);
                     $photo = $_FILES['fileToUpload']['name'];
                     move_uploaded_file($_FILES['fileToUpload']['tmp_name'], './public/uploads/' . $photo);
                     $result = $this->postModel->editPost($_GET['id'], $cat_id, $title, $summary, $des, $photo, $status, $slug);

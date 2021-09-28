@@ -4,12 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">User</h1>
-                </div>
-                <div class="col-sm-6 mt-1">
-                    <ol class="breadcrumb float-sm-right">
-                      <a class="btn btn-success" href="<?php echo URL ?>User/viewAddUser"><i class="fas fa-plus"> Add User</i></a>
-                    </ol>
+                    <h1 class="m-0">Review</h1>
                 </div>
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -23,11 +18,11 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">List User</h3>
+                <h3 class="card-title">List Review</h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <form action="<?php echo URL.'User/index' ?>" method="post" class="d-flex">
+                    <form action="<?php echo URL.'Review/index' ?>" method="post" class="d-flex">
                       <input type="text" name="txtSearch" class="form-control float-right" placeholder="Search...">
                       <div class="input-group-append">
                         <button type="submit" class="btn btn-default" name="search">
@@ -45,33 +40,23 @@
                     <tr>
                       <th>STT</th>
                       <th>Name</th>
-                      <th>Email</th>
-                      <th>Phone</th>
-                      <th>Address</th>
-                      <th>Role</th>
-                      <th>Photo</th>
-                      <th width="60px">Edit</th>
-                      <th width="60px">Delete</th>
+                      <th>Title Post</th>
+                      <th>Rate</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php 
                         $stt=1;
-                        foreach($data['users'] as $user) {
+                        foreach($data['reviews'] as $review) {
                     ?>
                     <tr>
                       <td><?php echo $stt++ ?></td>
-                      <td><?php echo $user['name'] ?></td>
-                      <td><?php echo $user['email'] ?></td>
-                      <td><?php echo $user['phone'] ?></td>
-                      <td><?php echo $user['address'] ?></td>
-                      <td><?php echo $user['role'] ?></td>
-                      <td><div class="user-images">
-                        <img src="<?php echo URL . 'public/uploads/avatar/' . $user['photo'] ?>" id="upload-img">
-                        </div></td>
-                      <td><a class="btn btn-warning" href="<?php echo URL ?>User/viewEditUser&id=<?php echo $user['id'] ?>"><i class="fas fa-edit"></i></a></td>
-                      <td><a class="btn btn-danger" href="<?php echo URL ?>User/deleteUser&id=<?php echo $user['id'] ?>&photo=<?php echo $user['photo'] ?>"><i class="fas fa-trash-alt"></i></a></td>
-                    </tr>
+                      <td><?php echo $review['name'] ?></td>
+                      <td><?php echo $review['title'] ?></td>
+                      <td><?php echo $review['rate'] ?>
+                        <label class="ml-2" style="width: 20px; height: 20px; font-size: 15px; color: yellow; ">&#11088;</label>
+                      </td>
+                      </tr>
                     <?php }?>
                   </tbody>
                 </table>
