@@ -18,6 +18,7 @@ class LoginController extends Connect
             if ($result) {
                 $_SESSION['name'] = $result[0]['name'];
                 $_SESSION['userID'] = $result[0]['id'];
+                $_SESSION['photo'] = $result[0]['photo'];
                 $role = $result[0]['role'];
                 $_SESSION['role'] = $role;
                 if ($role == 'admin' || $role == 'editor' || $role == 'writer') {
@@ -39,11 +40,13 @@ class LoginController extends Connect
                 unset($_SESSION['name']);
                 unset($_SESSION['userID']);
                 unset($_SESSION['role']);
+                unset($_SESSION['photo']);
                 header('Location: ' . URL . 'Home/index');
             } else {
                 unset($_SESSION['name']);
                 unset($_SESSION['userID']);
                 unset($_SESSION['role']);
+                unset($_SESSION['photo']);
                 header('Location: ' . URL . 'LoginController/login');
             }
         }

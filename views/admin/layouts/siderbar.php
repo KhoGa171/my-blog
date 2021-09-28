@@ -10,10 +10,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="<?php echo URL ?>public/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="<?php echo URL .'public/uploads/avatar/'.$_SESSION['photo']?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info mr-auto">
-                <a href="#" class="d-block"><?php echo '<div>'.$_SESSION['name'].'</div>'; ?></a>
+                <a href="<?php echo URL .'Profile/index&id='.$_SESSION['userID']?>" class="d-block"><?php echo '<div>'.$_SESSION['name'].'</div>'; ?></a>
             </div>
             <div class="info">
                 <a href="<?php echo URL ?>LoginController/logout" class="d-block">Đăng xuất</a>
@@ -69,7 +69,8 @@
                         </li>
                     </ul>
                 </li>
-                <?php }?>
+                <?php }
+                if($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'editor' || $_SESSION['role'] == 'writer'){?>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-file-alt"></i>
@@ -93,7 +94,8 @@
                         </li>
                     </ul>
                 </li>
-                <?php if($_SESSION['role'] == 'admin'){?>
+                <?php }
+                if($_SESSION['role'] == 'admin'){?>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-alt"></i>
@@ -117,16 +119,17 @@
                         </li>
                     </ul>
                 </li>
-                <?php }?>
+                <?php }
+                if($_SESSION['role'] == 'admin'){?>
                 <li class="nav-item "> <!-- menu-open -->
-                    <a href="<?php echo URL ?>Reviews/index" class="nav-link"> <!-- active -->
+                    <a href="<?php echo URL .'Review/index'?>" class="nav-link"> <!-- active -->
                         <i class="nav-icon fas fa-star"></i>
                         <p>
                             Reviews
-                            <!-- <span class="right badge badge-danger">New</span> -->
                         </p>
                     </a>
                 </li>
+                <?php }?>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -35,7 +35,7 @@
                         <li class="nav-item">
                         </li>
                         <li class="nav-item d-flex justify-content-center">
-                            <?php echo '<a href="#" class="nav-link">' . $_SESSION['name'] . '</a>'; ?>
+                            <?php echo '<a href="'. URL .'Profile/index&id='.$_SESSION['userID'].'" class="nav-link">' . $_SESSION['name'] . '</a>'; ?>
                             <a href="<?php echo URL ?>LoginController/logout" class="nav-link ml-2"><i class="fas fa-sign-out-alt"></i></a>
                         </li>
                     <?php } else { ?>

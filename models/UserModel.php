@@ -21,8 +21,8 @@ class UserModel extends DBConnection
         $result = $this->conn->query($sql);
         return $result->fetchAll();
     }
-    public function addUser($name, $email, $phone, $addr, $pass, $role){
-        $sql = "INSERT INTO users (name, email, phone, address, password, role) values (?, ?, ?, ?, ?, ?)";
+    public function addUser($name, $email, $phone, $addr, $pass, $role, $pt){
+        $sql = "INSERT INTO users (name, email, phone, address, password, role, photo) values (?, ?, ?, ?, ?, ?, ?)";
         $result = $this->conn->prepare($sql);
         $result->bindParam(1, $name);
         $result->bindParam(2, $email);
@@ -30,12 +30,13 @@ class UserModel extends DBConnection
         $result->bindParam(4, $addr);
         $result->bindParam(5, $pass);
         $result->bindParam(6, $role);
+        $result->bindParam(7, $pt);
         $result->execute();
         return $result;
     }
-    public function editUser($id, $name, $email, $phone, $addr, $pass, $role){
+    public function editUser($id, $name, $email, $phone, $addr, $pass, $role, $pt){
         $sql = "UPDATE users SET name='$name', email='$email', 
-        phone='$phone', address='$addr', password='$pass', role='$role' WHERE id='$id'";
+        phone='$phone', address='$addr', password='$pass', role='$role', photo='$pt' WHERE id='$id'";
         $result = $this->conn->query($sql);
         $result->execute();
         return $result;
