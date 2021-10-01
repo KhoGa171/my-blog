@@ -26,11 +26,17 @@ class ReviewModel extends DBConnection {
         $result->execute();
         return $result;
     }
-    public function TKReview($key){
+    public function searchReview($key){
         $sql = "SELECT * FROM post_reviews JOIN posts ON post_reviews.post_id = posts.id
         JOIN users ON post_reviews.user_id = users.id WHERE name LIKE '%$key%' OR title LIKE'%$key%'";
         $result= $this->conn->query($sql);
         return $result->fetchAll();
     }
-    // WHERE post_id = '$post_id'
+    public function countAllRate(){
+        $sql = "SELECT * FROM post_reviews";
+        $result = $this->conn->prepare($sql);
+        $result->execute();
+        $row = $result->rowCount();
+        return $row;
+    }
 }

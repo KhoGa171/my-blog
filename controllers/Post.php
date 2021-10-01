@@ -15,7 +15,7 @@ class Post extends Connect
         if($_SESSION['role']=='admin'||$_SESSION['role']=='editor'){
             if(isset($_POST['search'])){
                 $key = $_POST['txtSearch'];
-                $posts = $this->postModel->TKPost($key);
+                $posts = $this->postModel->searchPost($key);
             } else {
                 $posts =  $this->postModel->listPost();
             }
@@ -29,9 +29,9 @@ class Post extends Connect
         } else {
             if(isset($_POST['search'])){
                 $key = $_POST['txtSearch'];
-                $posts = $this->postModel->TKPostID($key, $_SESSION['userID']);
+                $posts = $this->postModel->searchPostID($key, $_SESSION['userID']);
             } else {
-                $posts =  $this->postModel->listPostID($_SESSION['userID']);
+                $posts =  $this->postModel->listPost_UserId($_SESSION['userID']);
             }
             $this->call_views('admin/index', [
                 'folder' => 'post',
@@ -59,7 +59,7 @@ class Post extends Connect
             $summary = $_POST['txtSumm'];
             $des = $_POST['txtDes'];
             $slug = $this->to_slug($title);
-            $total_row = count($this->postModel->searchPost($slug));
+            $total_row = count($this->postModel->searchPost_Slug($slug));
             if ($total_row > 0) {
                 foreach ($this->postModel->listPost() as $row) {
                     $data[] = $row['slug'];
@@ -88,9 +88,6 @@ class Post extends Connect
                 }
             } else  echo '<script>alert("Lỗi!"); window.location="' . URL . 'Post/viewAddPost";</script>';
         }
-        // if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-        //     echo '<script>alert("Sorry, only JPG, JPEG, PNG files are allowed!"); window.location="' . URL . 'Post/viewAddPost";</script>';
-        // }
     }
     public function viewEditPost()
     {
@@ -111,7 +108,7 @@ class Post extends Connect
             $status = $_POST['txtStatus'];
             $pt = $_POST['txtPhoto'];
             $slug = $this->to_slug($title);
-            $total_row = count($this->postModel->searchPost($slug));
+            $total_row = count($this->postModel->searchPost_Slug($slug));
             if ($total_row > 0) {
                 foreach ($this->postModel->listPost() as $row) {
                     $data[] = $row['slug'];

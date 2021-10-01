@@ -7,7 +7,7 @@ class Review extends Connect {
     public function index(){
         if(isset($_POST['search'])){
             $key = $_POST['txtSearch'];
-            $reviews = $this->reviewModel->TKReview($key);
+            $reviews = $this->reviewModel->searchReview($key);
         } else {
             $reviews =  $this->reviewModel->getReview();
         }

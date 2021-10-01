@@ -19,7 +19,7 @@ class Home extends Connect
             $trang = $_GET['page'];
         }
         $tung_trang = ($trang-1)*$quantity_post;
-        $posts = $this->postModel->listPU();
+        $posts = $this->postModel->listPost_Status();
         foreach($posts as $post){
             $rate[] = $this->reviewModel->countRate($post['id']);
         }

@@ -47,7 +47,7 @@ class UserModel extends DBConnection
         $result->execute();
         return $result;
     }
-    public function TKUser($keyword){
+    public function searchUser($keyword){
         $sql = "SELECT * FROM users WHERE name='$keyword' OR email='$keyword' 
         OR phone='$keyword' OR address='$keyword' OR role='$keyword'";
         $result = $this->conn->query($sql);
