@@ -11,7 +11,7 @@ class CategoryModel extends DBConnection
         $result = $this->conn->query($sql);
         return $result->fetchAll();
     }
-    public function searchCat($slug){
+    public function searchCat_Slug($slug){
         $sql = "SELECT * FROM categories WHERE slug LIKE '%$slug%'";
         $result = $this->conn->query($sql);
         return $result->fetchAll();
@@ -47,7 +47,7 @@ class CategoryModel extends DBConnection
         $result->execute();
         return $result;
     }
-    public function TKCat($keyword){
+    public function searchCat($keyword){
         $sql = "SELECT * FROM categories WHERE title LIKE '%$keyword%'";
         $result = $this->conn->query($sql);
         return $result->fetchAll();

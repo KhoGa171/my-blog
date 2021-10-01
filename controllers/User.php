@@ -10,7 +10,7 @@ class User extends Connect
     {
         if(isset($_POST['search'])){
             $key = $_POST['txtSearch'];
-            $users = $this->userModel->TKUser($key);
+            $users = $this->userModel->searchUser($key);
         } else {
             $users =  $this->userModel->listUser();
         }

@@ -10,7 +10,7 @@ class Category extends Connect
     {
         if(isset($_POST['search'])){
             $key = $_POST['txtSearch'];
-            $categories = $this->categoryModel->TKCat($key);
+            $categories = $this->categoryModel->searchCat($key);
         } else {
             $categories =  $this->categoryModel->listCat();
         }
@@ -34,7 +34,7 @@ class Category extends Connect
             $user_id = $_SESSION['userID'];
             $title = $_POST['txtTitle'];
             $slug = $this->to_slug($title);
-            $total_row = count($this->categoryModel->searchCat($slug));
+            $total_row = count($this->categoryModel->searchCat_Slug($slug));
             if ($total_row > 0) {
                 foreach ($this->categoryModel->listCat() as $row) {
                     $data[] = $row['slug'];
@@ -68,7 +68,7 @@ class Category extends Connect
             $user_id = $_SESSION['userID'];
             $title = $_POST['txtTitle'];
             $slug = $this->to_slug($title);
-            $total_row = count($this->categoryModel->searchCat($slug));
+            $total_row = count($this->categoryModel->searchCat_Slug($slug));
             if ($total_row > 0) {
                 foreach ($this->categoryModel->listCat() as $row) {
                     $data[] = $row['slug'];

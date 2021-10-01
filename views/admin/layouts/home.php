@@ -59,7 +59,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Reviews</span>
-                            <span class="info-box-number">760</span>
+                            <span class="info-box-number"><?php echo $data['countRate'] ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
