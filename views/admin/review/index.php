@@ -39,8 +39,10 @@
                   <thead>
                     <tr>
                       <th>STT</th>
-                      <th>Name</th>
-                      <th>Title Post</th>
+                      <th>Tên bài viết</th>
+                      <th>Tác giả</th>
+                      <th>Email đánh giá</th>
+                      <th>Tên người đánh giá</th>
                       <th>Rate</th>
                     </tr>
                   </thead>
@@ -51,8 +53,10 @@
                     ?>
                     <tr>
                       <td><?php echo $stt++ ?></td>
-                      <td><?php echo $review['name'] ?></td>
                       <td><?php echo $review['title'] ?></td>
+                      <td><?php echo $review['name'] ?></td>
+                      <td><?php echo $review['email_review'] ?></td>
+                      <td><?php echo $review['name_review'] ?></td>
                       <td><?php echo $review['rate'] ?>
                         <label class="ml-2" style="width: 20px; height: 20px; font-size: 15px; color: yellow; ">&#11088;</label>
                       </td>

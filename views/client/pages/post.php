@@ -29,12 +29,15 @@
                                         <h4><?php echo $data['post']['title'] ?></h4>
                                     </a>
                                     <ul class="post-info">
-                                        <li><a href="#">Admin</a></li>
+                                        <li><a href="#"><?php echo $data['author']['name'] ?></a></li>
                                         <li><a href="#"><?php echo $data['post']['updated_at'] ?></a></li>
                                         <li><a href="#">
-                                            <?php if($data['reviews']){ echo $data['reviews'] ?> <label class="ml-2" style="width: 20px; height: 20px; font-size: 15px; color: yellow; ">&#11088;</label>
-                                            <?php } else { echo 'Chưa có đánh giá'; }?>
-                                        </a></li>
+                                                <?php if ($data['reviews']) {
+                                                    echo $data['reviews'] ?> <label class="ml-2" style="width: 20px; height: 20px; font-size: 15px; color: yellow; ">&#11088;</label>
+                                                <?php } else {
+                                                    echo 'Chưa có đánh giá';
+                                                } ?>
+                                            </a></li>
                                     </ul>
                                     <p><?php echo $data['post']['description'] ?></p>
                                     <div class="post-options">
@@ -62,31 +65,38 @@
                             <div class="sidebar-heading d-flex">
                                 <h2>ĐÁNH GIÁ BÀI VIẾT:</h2>
                             </div>
-                            <div class="row">
-                                <div class="col-3 d-flex ml-2" style="border-right: 1px solid gray">
-                                    <?php if($data['reviews']) {?>
-                                    <h5 class="mt-2" style="color: #f48840;"> <?php echo $data['reviews'] ?>/5.0 </h5>
-                                    <label class="ml-2" style="width: 30px; height: 30px; font-size: 25px; color: yellow; ">&#11088;</label>
-                                    <?php } else {?>
-                                        <h5 class="mt-2" style="color: #f48840;"> Chưa có đánh giá </h5>
-                                    <?php } ?>
-                                </div>
-                                <form action="<?php echo URL.'Review/addRate&post_id='.$data['post']['id'].'&slug='.$data['post']['slug'] ?>" method="post" class="col-5 d-flex ml-3">
-                                    <div class="rating">
-                                        <input type="radio" name="star" id="star-1" value="1">
-                                        <input type="radio" name="star" id="star-2" value="2">
-                                        <input type="radio" name="star" id="star-3" value="3">
-                                        <input type="radio" name="star" id="star-4" value="4">
-                                        <input type="radio" name="star" id="star-5" value="5">
-                                        <label for="star-1">&#11088;</label>
-                                        <label for="star-2">&#11088;</label>
-                                        <label for="star-3">&#11088;</label>
-                                        <label for="star-4">&#11088;</label>
-                                        <label for="star-5">&#11088;</label>
+                            <form action="<?php echo URL . 'Review/addRate&post_id='.$data['post']['id'].'&slug='.$data['post']['slug'].'&user_id='.$data['post']['user_id'] ?>" method="post">
+                                <div class="row mb-4">
+                                    <div class="col-3 d-flex ml-2" style="border-right: 1px solid gray">
+                                        <?php if ($data['reviews']) { ?>
+                                            <h5 class="mt-2" style="color: #f48840;"> <?php echo $data['reviews'] ?>/5.0 </h5>
+                                            <label class="ml-2" style="width: 30px; height: 30px; font-size: 25px; color: yellow; ">&#11088;</label>
+                                        <?php } else { ?>
+                                            <h5 class="mt-2" style="color: #f48840;"> Chưa có đánh giá </h5>
+                                        <?php } ?>
                                     </div>
-                                    <button type="submit" class="btn btn-primary form-control ml-3" name="review">Đánh giá</button>
-                                </form>
-                            </div>
+                                    <div class="col-5 d-flex ml-3">
+                                        <div class="rating">
+                                            <input type="radio" name="star" id="star-1" value="1" required>
+                                            <input type="radio" name="star" id="star-2" value="2">
+                                            <input type="radio" name="star" id="star-3" value="3">
+                                            <input type="radio" name="star" id="star-4" value="4">
+                                            <input type="radio" name="star" id="star-5" value="5">
+                                            <label for="star-1">&#11088;</label>
+                                            <label for="star-2">&#11088;</label>
+                                            <label for="star-3">&#11088;</label>
+                                            <label for="star-4">&#11088;</label>
+                                            <label for="star-5">&#11088;</label>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary form-control ml-3" name="review">Đánh giá</button>
+                                    </div>
+                                </div>
+                                <h5>Thông tin cá nhân:</h5>
+                                <div class="d-flex mb-3 mt-2">
+                                    <input type="email" name="txtEmail" class="form-control mr-2" placeholder="Nhập email của bạn" required>
+                                    <input type="text" name="txtName" class="form-control" placeholder="Nhập họ tên" required>
+                                </div>
+                            </form>
                         </div>
                         <div class="col-lg-12">
                             <div class="sidebar-item comments">
