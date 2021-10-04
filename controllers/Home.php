@@ -86,6 +86,7 @@ class Home extends Connect
         $post = $this->postModel->checkSlug($slug);
         $cat = $this->categoryModel->getCat($post[0]['cat_id']);
         $rate = $this->reviewModel->countRate($post[0]['id']);
+        $author = $this->userModel->getUser($post[0]['user_id']);
         $this->call_views('client/index', [
             'folder' => 'pages',
             'page' => 'post',
@@ -93,7 +94,8 @@ class Home extends Connect
             'postsR' => $this->postModel->postRecent(),
             'titleCat' => $cat[0]['title'],
             'post' => $post[0],
-            'reviews' => $rate[0]['countRate']
+            'reviews' => $rate[0]['countRate'],
+            'author' => $author[0],
         ]);
     }
     public function contact(){

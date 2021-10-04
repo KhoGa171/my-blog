@@ -20,15 +20,16 @@ class ReviewModel extends DBConnection {
         $result = $this->conn->query($sql);
         return $result->fetchAll();
     }
-    public function addRate($user_id, $post_id, $rate){
-        $sql = "INSERT INTO post_reviews (user_id, post_id, rate) VALUES ('$user_id', '$post_id', '$rate')";
+    public function addRate($user_id, $post_id, $email, $name, $rate){
+        $sql = "INSERT INTO post_reviews (user_id, post_id, email_review, name_review, rate) VALUES ('$user_id', '$post_id', '$email', '$name', '$rate')";
         $result = $this->conn->prepare($sql);
         $result->execute();
         return $result;
     }
     public function searchReview($key){
         $sql = "SELECT * FROM post_reviews JOIN posts ON post_reviews.post_id = posts.id
-        JOIN users ON post_reviews.user_id = users.id WHERE name LIKE '%$key%' OR title LIKE'%$key%'";
+        JOIN users ON post_reviews.user_id = users.id 
+        WHERE name LIKE '%$key%' OR title LIKE'%$key%' OR email_review LIKE'%$key%' OR name_review LIKE'%$key%'";
         $result= $this->conn->query($sql);
         return $result->fetchAll();
     }
